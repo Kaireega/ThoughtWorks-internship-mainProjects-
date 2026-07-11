@@ -1,90 +1,80 @@
-# Project README
+# Rewire — ThoughtWorks Internship Project
 
-## Overview
+Full-stack CBT (Cognitive Behavioral Therapy) thought journal with social justice "Know Your Rights" educational content. Built during the 2022 ThoughtWorks social-justice internship by a team of ~12.
 
-This project is a Spring Boot application with a PostgreSQL database integration. It also includes a frontend that interacts with the backend API to manage Cognitive Behavioral Therapy (CBT) records.
+---
 
-### Backend: Spring Boot and PostgreSQL
+## What it does
 
-- **DatabaseConfig.java**: Configures the HikariCP connection pool for database management.
-- **DemoApplication.java**: The main entry point for the Spring Boot application.
-- **CBTController.java**: Manages HTTP requests and responses for CBT-related operations.
-- **CBT.java**: A model class representing the CBT entity.
-- **CBTRepository.java**: Provides CRUD operations for the CBT entity.
-- **CBTService.java**: Provides business logic for handling CBT operations.
+Users submit four-part CBT thoughts through a React frontend. The Spring Boot backend stores them in PostgreSQL. The app also includes FAQ, tutorials, and rights information for marginalized communities.
 
-### Frontend: React
+---
 
-- **App.js**: The main entry point for the frontend React application.
-- **FAQ.js**: A component that provides users with a modal to display FAQs related to CBT.
-- **HomePage.js**: Displays the main homepage, including adding new thoughts and displaying recently added ones.
-- **ThoughtForm.js**: A form component for users to submit new CBT thoughts.
-- **ThoughtPreview.js**: Displays previously added thoughts.
+## Tech stack
 
-## Key Features
+**Backend:**
+- Java 11, Spring Boot 2.4.4
+- Spring Data JPA, PostgreSQL, HikariCP
+- Lombok
 
-- **Backend API**:
-  - Create and manage CBT records.
-  - Integration with PostgreSQL using HikariCP for database connection pooling.
-  - RESTful API endpoints for managing CBT entries.
+**Frontend (`internship-project/app/`):**
+- React 17, Material-UI v4 + MUI v5
+- Axios
 
-- **Frontend Interface**:
-  - A React-based user interface with forms to add new CBT thoughts.
-  - FAQ section with expandable accordion items to provide more information about CBT.
-  - Displays a list of recent CBT thoughts.
-  
-### How to Run
+---
 
-#### Prerequisites
+## Quick start
 
-- Java 11+
-- Node.js
-- PostgreSQL
+### Prerequisites
 
-#### Backend Setup
+- Java 11, Node.js/npm, PostgreSQL
 
-1. Clone the repository.
-2. Navigate to the backend directory.
-3. Update `application.properties` with your PostgreSQL credentials.
-4. Run the application using the following command:
+### Backend
 
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+```bash
+git clone https://github.com/Kaireega/ThoughtWorks-internship-mainProjects-.git
+cd ThoughtWorks-internship-mainProjects-/internship-project
 
-#### Frontend Setup
+# Set database credentials via environment variables:
+export username=your_db_user
+export password=your_db_password
 
-1. Navigate to the `frontend` directory.
-2. Install dependencies:
+./mvnw spring-boot:run
+```
 
-   ```bash
-   npm install
-   ```
+### Frontend
 
-3. Start the React application:
+```bash
+cd internship-project/app
+npm install
+npm start    # Proxies API to localhost:8080
+```
 
-   ```bash
-   npm start
-   ```
+### API
 
-### API Endpoints
+| Endpoint | Method | Body |
+|----------|--------|------|
+| `GET /api/cbt` | GET | — (list all thoughts) |
+| `POST /api/cbt` | POST | `{ "firstThought", "secondThought", "thirdThought", "fourthThought" }` |
 
-- **GET** `/api/cbt`: Fetches all CBT records.
-- **POST** `/api/cbt`: Creates a new CBT record.
+---
 
-### Technologies Used
+## Project structure
 
-- **Spring Boot**: Backend framework for building RESTful APIs.
-- **PostgreSQL**: Database management system.
-- **HikariCP**: JDBC connection pool for efficient database connections.
-- **React**: Frontend framework.
-- **Material-UI**: UI framework for styling the frontend.
+```
+ThoughtWorks-internship-mainProjects-/
+└── internship-project/
+    ├── pom.xml
+    ├── src/main/java/com/example/demo/    # Spring Boot backend
+    ├── app/                                # React frontend (npm: "rewire")
+    ├── docs/                               # Content and check-in notes
+    └── LICENSE.txt
+```
 
-### Testing
+For detailed ThoughtWorks onboarding docs, see [`internship-project/readme.md`](internship-project/readme.md).
 
-- Unit and integration tests are written using JUnit and Mockito.
-- **CBTControllerTest.java** and **CBTServiceTest.java** provide tests for the backend API.
+---
 
-### License
+## Author
 
-© 2021 Thoughtworks, Inc.
+**Kai'ree Gay** — [GitHub](https://github.com/Kaireega)
